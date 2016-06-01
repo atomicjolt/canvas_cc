@@ -14,7 +14,8 @@ describe CanvasCc::CanvasCC::PageWriter do
     page.workflow_state = 'active'
     page.body = '<h2>This is the body</h2>'
     page.editing_roles = 'teachers'
-    page.page_name ='My Page Title'
+    page.page_name = 'My Page Title'
+    page.front_page = true
     writer.write
     html = Nokogiri::HTML(File.read(File.join(work_dir, page.href)))
     expect(html.at_css('meta[http-equiv]')[:'http-equiv']).to eq 'Content-Type'
@@ -23,6 +24,7 @@ describe CanvasCc::CanvasCC::PageWriter do
     expect(html.at_css('meta[name=editing_roles]')[:content]).to eq 'teachers'
     expect(html.at_css('meta[name=workflow_state]')[:content]).to eq 'active'
     expect(html.at_css('title').text).to eq 'My Page Title'
+    expect(html.at_css('meta[name=front_page]')[:content]).to eq 'true'
     expect(html.at_css('body').inner_html.to_s).to eq '<h2>This is the body</h2>'
   end
 

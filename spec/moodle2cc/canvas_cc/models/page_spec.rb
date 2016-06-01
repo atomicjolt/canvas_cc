@@ -10,6 +10,7 @@ module CanvasCc::CanvasCC::Models
     it_behaves_like 'it has an attribute for', :editing_roles
     it_behaves_like 'it has an attribute for', :body
     it_behaves_like 'it has an attribute for', :title
+    it_behaves_like 'it has an attribute for', :front_page
 
     its(:type) { should eq 'webcontent' }
 
