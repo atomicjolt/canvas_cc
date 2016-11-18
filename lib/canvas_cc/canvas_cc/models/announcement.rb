@@ -1,6 +1,6 @@
 module CanvasCc::CanvasCC::Models
   class Announcement
-  	attr_accessor :identifier, :dependency
+  	attr_accessor :identifier, :dependency, :title, :text, :posted_at, :delayed_post
 
   	IMSDT_TYPE = 'imsdt_xmlv1p1'
     LAR_TYPE = 'associatedcontent/imscc_xmlv1p1/learning-application-resource'

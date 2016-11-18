@@ -53,6 +53,7 @@ module CanvasCc
     autoload :DiscussionWriter, 'canvas_cc/canvas_cc/discussion_writer'
     autoload :AssignmentWriter, 'canvas_cc/canvas_cc/assignment_writer'
     autoload :AssignmentGroupWriter, 'canvas_cc/canvas_cc/assignment_group_writer'
+    autoload :AnnouncementWriter, 'canvas_cc/canvas_cc/announcement_writer'
 
     autoload :QuestionWriter, 'canvas_cc/canvas_cc/question_writer'
     autoload :CalculatedQuestionWriter, 'canvas_cc/canvas_cc/calculated_question_writer'

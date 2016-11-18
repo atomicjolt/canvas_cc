@@ -43,6 +43,7 @@ module CanvasCc::CanvasCC
       CanvasCc::CanvasCC::FileMetaWriter.new(dir, @course.files, @course.folders).write
       CanvasCc::CanvasCC::PageWriter.new(dir, *@course.pages).write
       CanvasCc::CanvasCC::DiscussionWriter.new(dir, *@course.discussions).write
+      CanvasCc::CanvasCC::AnnouncementWriter.new(dir, @course.announcements).write
       CanvasCc::CanvasCC::AssignmentWriter.new(dir, *@course.assignments).write
       CanvasCc::CanvasCC::QuestionBankWriter.new(dir, *@course.question_banks).write
       CanvasCc::CanvasCC::AssessmentWriter.new(dir, *@course.assessments).write
