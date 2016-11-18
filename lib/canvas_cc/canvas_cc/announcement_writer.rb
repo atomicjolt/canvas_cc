@@ -19,7 +19,7 @@ module CanvasCc::CanvasCC
       xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
       	topic(xml) do |xml|
       		xml.title announcement.title
-      		xml.text_('texttype' => 'text/html') { xml.text CGI.escapeHTML(announcement.text) }
+      		xml.text_('texttype' => 'text/html') { xml.text announcement.text }
       	end
       end.to_xml
       File.open(File.join(@work_dir, announcement.identifier+'.xml'), 'w') { |f| f.write(xml) }
