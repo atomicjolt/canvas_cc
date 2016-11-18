@@ -287,6 +287,18 @@ A Discussion can have the following attributes
 * **discussion_type** - the type of discussion 'threaded' or 'side_comment'
 * **position** - used to control the ordering of discussions
 
+###Announcements
+    announcement = CanvasCc::CanvasCC::Models::Announcement.new
+    course.announcements << announcement
+
+The following are attributes available on the Announcement object.
+* **identifier** - unique identifier for the Announcement
+* **dependency** - unique identifier for the Dependency
+* **title** - title of announcement
+* **text** - text of announcement
+* **posted_at** - posted_at date of announcement
+* **delayed_post** -delayed_post date of announcement
+
 ###Assignment_groups
 An AssignmentGroup can be created in Canvas as follows
 
