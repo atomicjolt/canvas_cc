@@ -2,7 +2,7 @@ module CanvasCc::CanvasCC::Models
   class Course
 
     attr_accessor :format, :identifier, :copyright, :settings, :resources, :canvas_modules, :files, :pages, :discussions,
-                  :assignments, :assessments, :question_banks, :assignment_groups, :folders
+                  :assignments, :assessments, :announcements, :question_banks, :assignment_groups, :folders
 
     def initialize
       @settings = {}
@@ -14,6 +14,7 @@ module CanvasCc::CanvasCC::Models
       @discussions = []
       @assignments = []
       @assessments = []
+      @announcements = []
       @question_banks = []
       @assignment_groups = []
     end
@@ -28,7 +29,7 @@ module CanvasCc::CanvasCC::Models
     end
 
     def all_resources
-      @resources + @files + @pages + @discussions.map(&:resources).flatten + @assignments.map(&:resources).flatten + @assessments.map(&:resources).flatten
+      @resources + @files + @pages + @discussions.map(&:resources).flatten + @assignments.map(&:resources).flatten + @assessments.map(&:resources).flatten + @announcements.map(&:resources).flatten
     end
 
     def method_missing(m, *args, &block)

@@ -76,6 +76,7 @@ module CanvasCc
       autoload :Assignment, 'canvas_cc/canvas_cc/models/assignment'
       autoload :AssignmentGroup, 'canvas_cc/canvas_cc/models/assignment_group'
       autoload :Assessment, 'canvas_cc/canvas_cc/models/assessment'
+      autoload :Announcement, 'canvas_cc/canvas_cc/models/announcement'
       autoload :DiscussionTopic, 'canvas_cc/canvas_cc/models/discussion_topic'
       autoload :Question, 'canvas_cc/canvas_cc/models/question'
       autoload :CalculatedQuestion, 'canvas_cc/canvas_cc/models/calculated_question'
