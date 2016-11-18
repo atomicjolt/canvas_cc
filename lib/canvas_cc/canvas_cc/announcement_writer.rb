@@ -8,14 +8,14 @@ module CanvasCc::CanvasCC
 
     def write
       @announcements.each do |announcement|
-      	identifier_write_xml(announcement)
-      	dependency_write_xml(announcement)
+      	write_announcement(announcement)
+      	write_meta(announcement)
       end
     end
 
     private
 
-    def identifier_write_xml(announcement)
+    def write_announcement(announcement)
       xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
       	topic(xml) do |xml|
       		xml.title announcement.title
@@ -25,7 +25,7 @@ module CanvasCc::CanvasCC
       File.open(File.join(@work_dir, announcement.identifier+'.xml'), 'w') { |f| f.write(xml) }
     end
 
-    def dependency_write_xml(announcement)
+    def write_meta(announcement)
     	xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
       	topicMeta(xml, announcement) do |xml|
       		xml.topic_id announcement.identifier
