@@ -18,6 +18,7 @@ module CanvasCc::CanvasCC
     def write_assessment(assessment)
       write_assessment_non_cc_qti_xml(assessment)
       write_assessment_meta_xml(assessment)
+      write_assessment_cc_qti_xml(assessment)
     end
 
     def write_assessment_meta_xml(assessment)
@@ -61,6 +62,40 @@ module CanvasCc::CanvasCC
                 qtimetadatafield_node.fieldlabel "qmd_timelimit"
                 qtimetadatafield_node.fieldentry assessment.time_limit
               end
+              qtimetadata_node.qtimetadatafield do |qtimetadatafield_node|
+                qtimetadatafield_node.fieldlabel "cc_maxattempts"
+                qtimetadatafield_node.fieldentry assessment.allowed_attempts
+              end
+            end
+            assessment_node.section(:ident => 'root_section') do |section_node|
+              assessment.items.each do |item|
+                case item
+                when CanvasCc::CanvasCC::Models::Question
+                  CanvasCc::CanvasCC::QuestionWriter.write_question(section_node, item)
+                when CanvasCc::CanvasCC::Models::QuestionGroup
+                  CanvasCc::CanvasCC::QuestionGroupWriter.write_question_group(section_node, item)
+                end
+              end
+            end
+          end
+        }
+      end.to_xml
+
+      file_path = File.join(@work_dir, assessment.qti_file_non_cc_path)
+      FileUtils.mkdir_p(File.dirname(file_path)) unless File.exists?(File.dirname(file_path))
+      File.open(file_path, 'w') { |f| f.write(xml) }
+    end
+
+    def write_assessment_cc_qti_xml(assessment)
+      raise "need to resolve questions references" if assessment.items.nil?
+
+      xml = Nokogiri::XML::Builder.new(encoding: 'UTF-8') do |xml|
+        xml.questestinterop("xmlns" => "http://www.imsglobal.org/xsd/ims_qtiasiv1p2",
+                            "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+                            "xsi:schemaLocation"=> "http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd"
+        ) { |xml|
+          xml.assessment(:title => assessment.title, :ident => assessment.identifier) do |assessment_node|
+            assessment_node.qtimetadata do |qtimetadata_node|
               qtimetadata_node.qtimetadatafield do |qtimetadatafield_node|
                 qtimetadatafield_node.fieldlabel "cc_maxattempts"
                 qtimetadatafield_node.fieldentry assessment.allowed_attempts

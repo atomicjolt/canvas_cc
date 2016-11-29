@@ -7,6 +7,7 @@ module CanvasCc::CanvasCC::AssignmentHelper
     xml.all_day_date CanvasCc::CC::CCHelper.ims_datetime(assignment.all_day_date) if assignment.all_day_date
     xml.peer_reviews_due_at CanvasCc::CC::CCHelper.ims_datetime(assignment.peer_reviews_due_at) if assignment.peer_reviews_due_at
     xml.assignment_group_identifierref assignment.assignment_group_identifier_ref if assignment.assignment_group_identifier_ref
+    xml.quiz_identifierref assignment.quiz_identifier_ref if assignment.quiz_identifier_ref
     xml.workflow_state assignment.workflow_state if assignment.workflow_state
     xml.points_possible assignment.points_possible if assignment.points_possible
     xml.grading_type assignment.grading_type if assignment.grading_type
@@ -25,6 +26,5 @@ module CanvasCc::CanvasCC::AssignmentHelper
     xml.peer_reviews assignment.peer_reviews unless assignment.peer_reviews.nil?
     xml.automatic_peer_reviews assignment.automatic_peer_reviews unless assignment.automatic_peer_reviews.nil?
     xml.anonymous_peer_reviews assignment.anonymous_peer_reviews unless assignment.anonymous_peer_reviews.nil?
-    xml.quiz_identifierref assignment.quiz_identifierref unless assignment.quiz_identifierref.nil?
   end
 end

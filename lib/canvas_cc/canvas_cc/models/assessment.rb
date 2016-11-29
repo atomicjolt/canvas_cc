@@ -6,7 +6,7 @@ module CanvasCc::CanvasCC::Models
                        :require_lockdown_browser_monitor, :lockdown_browser_monitor_data,
                        :show_correct_answers, :anonymous_submissions, :could_be_locked,
                        :available, :allowed_attempts, :one_question_at_a_time, :cant_go_back,
-                       :assignment_group_identifierref]
+                       :assignment_group_identifier_ref]
     DATETIME_ATTRIBUTES = [:lock_at, :unlock_at, :due_at, :show_correct_answers_at]
 
     ASSESSMENT_TYPE = 'imsqti_xmlv1p2/imscc_xmlv1p1/assessment'
@@ -28,7 +28,7 @@ module CanvasCc::CanvasCC::Models
       resource.identifier = @identifier
       resource.type = ASSESSMENT_TYPE
       resource.dependencies = ["#{@identifier}_meta"]
-      resource.files = [] # TODO: export cc qti file
+      resource.files = [qti_file_path] # TODO: export cc qti file
       resource
     end
 
@@ -37,7 +37,7 @@ module CanvasCc::CanvasCC::Models
       resource.identifier = "#{@identifier}_meta"
       resource.href = meta_file_path
       resource.type = LAR_TYPE
-      resource.files = [meta_file_path, qti_file_path]
+      resource.files = [meta_file_path, qti_file_non_cc_path]
       resource
     end
 
@@ -46,7 +46,11 @@ module CanvasCc::CanvasCC::Models
     end
 
     def qti_file_path
-      "#{ASSESSMENT_NON_CC_FOLDER}/#{@identifier}.xml.qti"
+      "#{@identifier}/assessment_qti.xml"
+    end
+
+    def qti_file_non_cc_path
+      "non_cc_assessments/#{identifier}.xml.qti"
     end
 
     def resolve_question_references!(question_banks)

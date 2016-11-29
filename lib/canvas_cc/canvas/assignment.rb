@@ -4,7 +4,8 @@ module CanvasCc::Canvas
     SETTINGS_ATTRIBUTES = [:title, :points_possible, :grading_type, :due_at,
       :lock_at, :unlock_at, :all_day, :all_day_date, :submission_types,
       :position, :peer_reviews, :automatic_peer_reviews, :peer_review_count,
-      :anonymous_peer_reviews, :assignment_group_identifierref]
+      :anonymous_peer_reviews, :assignment_group_identifierref,
+      :quiz_identifierref]
 
     attr_accessor *SETTINGS_ATTRIBUTES
 
@@ -37,6 +38,7 @@ module CanvasCc::Canvas
       @peer_review_count = mod.number_of_student_assessments
       @anonymous_peer_reviews = mod.anonymous
       @assignment_group_identifierref = create_key(mod.section_mod.section.id, 'assignment_group_')
+      @quiz_identifierref = create_key(mod.quiz_identifierref, 'quiz_')
     end
 
     def get_submission_types(mod)

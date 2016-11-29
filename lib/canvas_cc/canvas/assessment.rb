@@ -2,7 +2,8 @@ module CanvasCc::Canvas
   class Assessment < CanvasCc::CC::Assessment
     include Resource
     META_ATTRIBUTES = [:title, :description, :lock_at, :unlock_at, :allowed_attempts,
-      :scoring_policy, :access_code, :ip_filter, :shuffle_answers, :time_limit, :quiz_type]
+      :scoring_policy, :access_code, :ip_filter, :shuffle_answers, :time_limit, :quiz_type,
+      :assignment_group_identifierref]
 
     attr_accessor :questions, :non_cc_assessments_identifier, *META_ATTRIBUTES
 
