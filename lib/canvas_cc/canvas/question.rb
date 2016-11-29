@@ -26,7 +26,7 @@ module CanvasCc::Canvas
       100 =>  'text_only_question', # label question
     }
 
-    attr_accessor :material, :general_feedback, :answer_tolerance,
+    attr_accessor :material, :general_feedback, :answer_tolerance, :responses,
       :formulas, :formula_decimal_places, :vars, :var_sets, :matches, :answers,
       :numericals, :length, *META_ATTRIBUTES
 

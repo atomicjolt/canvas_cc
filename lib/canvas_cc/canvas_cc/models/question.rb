@@ -4,7 +4,8 @@ module CanvasCc::CanvasCC::Models
     STANDARD_QUESTION_TYPES = ['essay_question', 'fill_in_multiple_blanks_question',
                                'multiple_choice_question', 'multiple_answers_question',
                                'short_answer_question', 'text_only_question', 'true_false_question',
-                               'file_upload_question']
+                               'file_upload_question', 'multiple_dropdowns_question',
+                               'formula_question']
 
     attr_accessor :identifier, :original_identifier, :title, :material, :answers, :general_feedback,
     :general_incorrect_feedback, :general_correct_feedback, *QTI_META_ATTRIBUTES
