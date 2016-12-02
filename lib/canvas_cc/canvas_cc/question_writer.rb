@@ -131,7 +131,7 @@ module CanvasCc::CanvasCC
     # helper
     def self.convert_fraction_to_score(fraction)
       return 100 if fraction.nil?
-      (100 * fraction).to_i
+      (100 * fraction.to_f).to_i
     end
   end
 end
