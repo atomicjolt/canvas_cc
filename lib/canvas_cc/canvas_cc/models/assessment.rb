@@ -5,8 +5,7 @@ module CanvasCc::CanvasCC::Models
                        :quiz_type, :hide_results, :require_lockdown_browser, :require_lockdown_browser_for_results,
                        :require_lockdown_browser_monitor, :lockdown_browser_monitor_data,
                        :show_correct_answers, :anonymous_submissions, :could_be_locked,
-                       :available, :allowed_attempts, :one_question_at_a_time, :cant_go_back,
-                       :assignment_group_identifier_ref, :workflow_state]
+                       :available, :allowed_attempts, :one_question_at_a_time, :cant_go_back, :workflow_state]
     DATETIME_ATTRIBUTES = [:lock_at, :unlock_at, :due_at, :show_correct_answers_at]
 
     ASSESSMENT_TYPE = 'imsqti_xmlv1p2/imscc_xmlv1p1/assessment'
