@@ -61,6 +61,7 @@ module CanvasCc::CanvasCC
                 var_set[:vars].each do |k, v|
                   var_set_node.var(v, :name => k)
                 end
+                var_set_node.answer(var_set[:answer])
               end
             end
           end
