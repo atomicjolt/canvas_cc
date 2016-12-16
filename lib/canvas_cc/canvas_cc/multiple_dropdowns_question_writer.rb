@@ -8,13 +8,13 @@ module CanvasCc::CanvasCC
       question.responses.each do |response|
         presentation_node.response_lid(:ident => "response_#{response[:id]}") do |response_node|
           response_node.material do |material_node|
-            material_node.mattext(response[:id], :texttype => 'text/plain')
+            material_node.mattext(response[:id], :texttype => 'text/html')
           end
           response_node.render_choice do |choice_node|
             response[:choices].each do |choice|
               choice_node.response_label(:ident => choice[:id]) do |label_node|
                 label_node.material do |material_node|
-                  material_node.mattext(choice[:text], :texttype => 'text/plain')
+                  material_node.mattext(choice[:text], :texttype => 'text/html')
                 end
               end
             end
