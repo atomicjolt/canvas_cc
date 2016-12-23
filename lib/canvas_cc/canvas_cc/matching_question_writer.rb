@@ -9,13 +9,13 @@ module CanvasCc::CanvasCC
         presentation_node.response_lid(:ident => "response_#{match[:id]}") do |response_node|
           next unless match[:question_text].length > 0
           response_node.material do |material_node|
-            material_node.mattext(match[:question_text], :texttype => 'text/plain')
+            material_node.mattext(match[:question_text], :texttype => 'text/html')
           end
           response_node.render_choice do |choice_node|
             question.matches.each do |possible_match|
               choice_node.response_label(:ident => possible_match[:id]) do |label_node|
                 label_node.material do |material_node|
-                  material_node.mattext(possible_match[:answer_text], :texttype => 'text/plain')
+                  material_node.mattext(possible_match[:answer_text], :texttype => 'text/html')
                 end
               end
             end
@@ -24,7 +24,7 @@ module CanvasCc::CanvasCC
             question.distractors.each do |distractor|
               choice_node.response_label(:ident => Digest::MD5.hexdigest(distractor)) do |label_node|
                 label_node.material do |material_node|
-                  material_node.mattext(distractor, :texttype => 'text/plain')
+                  material_node.mattext(distractor, :texttype => 'text/html')
                 end
               end
             end
@@ -62,7 +62,7 @@ module CanvasCc::CanvasCC
         item_node.itemfeedback(:ident => "#{match[:id]}_fb") do |feedback_node|
           feedback_node.flow_mat do |flow_node|
             flow_node.material do |material_node|
-              material_node.mattext match[:answer_feedback], :texttype => 'text/plain'
+              material_node.mattext match[:answer_feedback], :texttype => 'text/html'
             end
           end
         end
